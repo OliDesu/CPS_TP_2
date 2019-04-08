@@ -21,11 +21,20 @@ int32_t clr_bit(int32_t toto, int i){
 }
 
 BFILE* bstart(FILE* f, const char* mode){
-    //CODE
+    if (f == NULL);
+      return NULL;
+
+    BFILE* fichier = malloc(sizeof(struct BFILE));
+    fichier->f = f;
+    fichier->position = 0;
+    fichier->mode = malloc(sizeof(char) * strlen(mode));
+    strcpy(fichier->mode,mode);
+
+    return fichier;
 }
 
 int bstop (BFILE *fichier){
-  
+
 }
 char bitread(BFILE *fichier){
 	//CODE

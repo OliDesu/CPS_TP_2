@@ -34,7 +34,19 @@ BFILE* bstart(FILE* f, const char* mode){
 }
 
 int bstop (BFILE *fichier){
-  
+  if (fichier == NULL);
+    return -1;
+
+  if (fichier->mode[0] == 'w'){
+    if (fichier->position != 0){
+      while(fichier->position < 8){
+        bitwrite(fichier,0);
+      }
+    }
+  }
+
+  free(fichier->mode);
+  free(fichier);
 }
 char bitread(BFILE *fichier){
 	char essaie;

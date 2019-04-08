@@ -37,7 +37,27 @@ int bstop (BFILE *fichier){
 
 }
 char bitread(BFILE *fichier){
-	//CODE
+	char essaie;
+
+	if(fichier->f==NULL){
+		return -1;
+	}
+	if(fichier->position==8){
+		fread(&fichier->tampon,1,1,fichier->f);
+				if(fichier->tampon!=(char)(0xFF)){
+					essaie = fichier->tampon;
+					fread(&fichier->tampon,1,1,fichier->f);
+					if(fichier->tampon==0){
+					return -1;
+					}
+					else {
+						fichier->tampon = essaie;
+					}
+				}
+		fichier->position = 0;
+	}
+	fichier->position++;
+	return ((fichier->tampon >> (8-fichier->position )) & 1);
 }
 int bitwrite(BFILE *fichier, char bit){
     //CODE

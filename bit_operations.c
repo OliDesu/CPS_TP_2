@@ -21,71 +21,14 @@ int32_t clr_bit(int32_t toto, int i){
 }
 
 BFILE* bstart(FILE* f, const char* mode){
-    if(f == NULL || mode == NULL) return NULL;
-    BFILE* b = malloc(sizeof(BFILE));
-    b->mode = malloc(sizeof((strlen(mode)+1)) * sizeof(char));
-    b->indice =0;
-
-    strcpy(b->mode,mode);
-    if(b->mode[0]== 'r'){
-        b->ouverture = 'r';
-    }
-    else{
-        b->ouverture ='w';
-    }
-    return b;
-}
-int bstop(BFILE* fichier){
-    if(fichier==NULL){
-            return 0;
-    }
-        free(fichier->mode);
-        free(fichier);
-        return 0;
-    
+    //CODE
 }
 char bitread(BFILE *fichier){
-	if(fichier->f==NULL){
-		return -1;
-	}
-    if(fichier->ouverture == 'w') return -1;
-	if(fichier->indice==8){
-		fread(&fichier->caracterecourant,1,1,fichier->f);
-		if(fichier->caracterecourant==(char)(0xFF)){
-			fread(&fichier->caracterecourant,1,1,fichier->f);
-			if(fichier->caracterecourant!=(char)(0xFF)){
-				if(fichier->caracterecourant==0){
-					return -1;
-				}
-				fread(&fichier->caracterecourant,1,1,fichier->f);
-			}
-		}
-		
-	}
-	fichier->indice++;
-	return ((fichier->caracterecourant>> (8-fichier->indice)) & 1);
+	//CODE
 }
 int bitwrite(BFILE *fichier, char bit){
-    if(fichier->ouverture == 'r') return -1;
-    if(fichier->f == NULL){
-		return -1;
-	}
-	if(bit){
-		fichier->caracterecourant |= (1<<(7-fichier->indice));
-	}
-	else{
-		fichier->caracterecourant &= ~(1<<(7-fichier->indice));
-	}
-	fichier->indice++;
-	if(fichier->indice==8){
-		if(fichier->caracterecourant==(char)(0xFF)){
-			fwrite(&fichier->caracterecourant,1,1,fichier->f);
-		}
-		fwrite(&fichier->caracterecourant,1,1,fichier->f);
-		fichier->indice=0;
-	}
-	return 0;
+    //CODE
 }
 int beof(BFILE* fichier){
-	return(bitread(fichier)==-1);
+	//CODE
 }

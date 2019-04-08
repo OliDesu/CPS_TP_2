@@ -2,11 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 typedef struct fichier{
-    FILE* f;
-    char* mode;
-    char indice;
-    char ouverture;
-    char caracterecourant;
+   // A FAIRE
 }BFILE;
 
 BFILE* bstart(FILE* f, const char* mode);

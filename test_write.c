@@ -1,7 +1,7 @@
 #include "bfile.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "bfile.h"
+
 int main()
 {
   BFILE *bfichier;

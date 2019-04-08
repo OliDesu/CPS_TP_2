@@ -21,7 +21,7 @@ int32_t clr_bit(int32_t toto, int i){
 }
 
 BFILE* bstart(FILE* f, const char* mode){
-    if (f == NULL);
+        if (f == NULL);
       return NULL;
 
     BFILE* fichier = malloc(sizeof(struct BFILE));
@@ -34,7 +34,7 @@ BFILE* bstart(FILE* f, const char* mode){
 }
 
 int bstop (BFILE *fichier){
-
+  
 }
 char bitread(BFILE *fichier){
 	char essaie;
@@ -60,8 +60,25 @@ char bitread(BFILE *fichier){
 	return ((fichier->tampon >> (8-fichier->position )) & 1);
 }
 int bitwrite(BFILE *fichier, char bit){
-    //CODE
+   	if(fichier->f == NULL){
+		return -1;
+	}
+	if(bit){
+		fichier->tampon |= (1<<(7-fichier->position));
+	}
+	else{
+		fichier->tampon &= ~(1<<(7-fichier->position));
+	}
+	fichier->position++;
+	if(fichier->position==8){
+		if(fichier->tampon==(char)(0xFF)){
+			fwrite(&fichier->tampon,1,1,fichier->f);
+		}
+		fwrite(&fichier->tampon,1,1,fichier->f);
+		fichier->position=0;
+	}
+	return 0;
 }
 int beof(BFILE* fichier){
-	//CODE
+	return(bitread(fichier)==-1);
 }

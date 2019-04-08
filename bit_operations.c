@@ -21,10 +21,10 @@ int32_t clr_bit(int32_t toto, int i){
 }
 
 BFILE* bstart(FILE* f, const char* mode){
-        if (f == NULL);
+    if (f == NULL)
       return NULL;
 
-    BFILE* fichier = malloc(sizeof(struct BFILE));
+    BFILE* fichier = malloc(sizeof(BFILE));
     fichier->f = f;
     fichier->position = 0;
     fichier->mode = malloc(sizeof(char) * strlen(mode));
@@ -34,9 +34,8 @@ BFILE* bstart(FILE* f, const char* mode){
 }
 
 int bstop (BFILE *fichier){
-  if (fichier == NULL);
+  if (fichier == NULL)
     return -1;
-
   if (fichier->mode[0] == 'w'){
     if (fichier->position != 0){
       while(fichier->position < 8){
@@ -47,6 +46,7 @@ int bstop (BFILE *fichier){
 
   free(fichier->mode);
   free(fichier);
+  return 0;
 }
 char bitread(BFILE *fichier){
 	char essaie;

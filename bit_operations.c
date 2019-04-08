@@ -23,6 +23,10 @@ int32_t clr_bit(int32_t toto, int i){
 BFILE* bstart(FILE* f, const char* mode){
     //CODE
 }
+
+int bstop (BFILE *fichier){
+  
+}
 char bitread(BFILE *fichier){
 	//CODE
 }

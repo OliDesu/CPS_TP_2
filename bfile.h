@@ -6,7 +6,6 @@ typedef struct fichier{
    char tampon;
    int position;
    char* mode;
-   
 
 }BFILE;
 

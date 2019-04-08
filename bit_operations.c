@@ -28,15 +28,22 @@ int bstop (BFILE *fichier){
   
 }
 char bitread(BFILE *fichier){
+	char essaie;
+
 	if(fichier->f==NULL){
 		return -1;
 	}
 	if(fichier->position==8){
 		fread(&fichier->tampon,1,1,fichier->f);
-				if(fichier->tampon==0){
+				if(fichier->tampon!=(char)(0xFF)){
+					essaie = fichier->tampon;
 					fread(&fichier->tampon,1,1,fichier->f);
-					if(fichier->tampon==0)
-						return -1;
+					if(fichier->tampon==0){
+					return -1;
+					}
+					else {
+						fichier->tampon = essaie;
+					}
 				}
 		fichier->position = 0;
 	}

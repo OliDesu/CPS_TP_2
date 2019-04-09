@@ -38,7 +38,7 @@ int bstop (BFILE *fichier){
     return -1;
   if (fichier->mode[0] == 'w'){
     if (fichier->position != 0){
-      while(fichier->position < 8){
+      while(fichier->position != 0){
         bitwrite(fichier,0);
       }
     }

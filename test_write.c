@@ -6,15 +6,18 @@ int main()
 {
   BFILE *bfichier;
   int c;
- 
-  bfichier = bstart(stdout,"w");
+  int stop = 0;
+
+  FILE* f = fopen("test.txt","w");
+
+  bfichier = bstart(f,"w");
   if (bfichier == NULL)
     {
       fprintf(stderr,"Erreur d'ouverture d'acces binaire en ecriture\n");
       exit(3);
     }
   c = getchar();
-  while (!feof(stdin))
+  while (!stop)
     {
       switch (c)
         {
@@ -23,6 +26,9 @@ int main()
           break;
         case '1':
           bitwrite(bfichier,1);
+          break;
+        case 'e':
+          stop = 1;
           break;
         }
       c = getchar();

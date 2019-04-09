@@ -6,7 +6,7 @@ int main()
 {
   BFILE *bfichier;
   int bit;
- 
+  
   bfichier = bstart(stdin,"r");
   if (bfichier == NULL)
     {

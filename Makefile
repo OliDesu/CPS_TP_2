@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-W -Wall -ansi -pedantic
 LDFLAGS=
-EXEC=bitabit test_read test_write
+EXEC=bitabit test_read test_write generate_sequence
 
 all: $(EXEC)
 
@@ -25,6 +25,12 @@ bitabit.o: bitabit.c bit_operations.h
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 bitabit: bitabit.o bit_operations.o
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+generate_sequence.o: generate_sequence.c 
+	$(CC) -o $@ -c $< $(CFLAGS)
+
+generate_sequence: generate_sequence.o 
 	$(CC) -o $@ $^ $(LDFLAGS)
 clean:
 	rm -rf *.o

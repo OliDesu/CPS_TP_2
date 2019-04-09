@@ -6,6 +6,7 @@ typedef struct fichier{
    char tampon;
    int position;
    char* mode;
+   char delimitation;
 }BFILE;
 
 BFILE* bstart(FILE* f, const char* mode);

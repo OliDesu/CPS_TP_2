@@ -75,11 +75,11 @@ int bitwrite(BFILE *fichier, char bit){
    	if(fichier->f == NULL){
 		return -1;
 	}
-	if(bit){
-		fichier->tampon |= (1<<(7-fichier->position));
+	if(!bit){
+		fichier->tampon &= ~(1<<(7-fichier->position));
 	}
 	else{
-		fichier->tampon &= ~(1<<(7-fichier->position));
+		fichier->tampon |= (1<<(7-fichier->position));
 	}
 	fichier->position++;
 	if(fichier->position==8){
